@@ -10,7 +10,7 @@ config = Config({
         'seed': 42,
         'num_epochs': 300,
         'num_batches_per_step': 4,
-        'log_name': 'vit-s16',
+        'log_name': 'vit-s16-1k-bce',
         'log_dir': '/mnt/shared/vit/logs',
         'tensorboard_dir': '/mnt/shared/vit/tb_logs',
         'ckpt_dir': '/mnt/shared/vit/ckpt',
@@ -20,7 +20,7 @@ config = Config({
         'amp': True,
     },
     'data': {
-        'dataset_path': '/mnt/shared/imagenet-100',
+        'dataset_path': '/mnt/shared/ILSVRC2012_1k/tfrecord',
         'batch_size': 128,
         'dali': True,
         'gpu_aug': True,
@@ -39,5 +39,6 @@ config = Config({
         'type': vit_small_patch16_224,
         'drop_rate': 0.1,
         'weight_init': 'jax',
+        # 'num_classes': 100,
     }
 })

@@ -17,6 +17,8 @@ from torch.nn.parallel import DistributedDataParallel as DDP
 from dataset import ImageNetFolder, make_meters, DaliImageNet
 from torch.cuda import amp
 from logger import DistributedLogger
+from loss import BCELoss
+from timm.loss import *
 
 METRIC = 'acc/test_top1'
 
@@ -116,7 +118,9 @@ def main():
     model = DDP(model, device_ids=[dist.get_rank()])
 
     # Build loss function
-    criterion = nn.CrossEntropyLoss()
+    # criterion = nn.CrossEntropyLoss()
+    # criterion = BinaryCrossEntropy()
+    criterion = BCELoss()
 
     # Build optimizer
     optimizer = config.optimizer.pop('type')
